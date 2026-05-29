@@ -8,34 +8,16 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface SubstituicaoRepository
-        extends JpaRepository<Substituicao, Integer> {
+public interface SubstituicaoRepository extends JpaRepository<Substituicao, Integer> {
 
-    // =========================
-    // BUSCAR POR PROFESSOR
-    // =========================
-    List<Substituicao> findByProfessorSubstitutoId(
-            Integer professorSubstitutoId
-    );
+    List<Substituicao> findByProfessorSubstitutoId(Integer professorSubstitutoId);
 
-    // =========================
-    // BUSCAR POR COORDENADOR
-    // =========================
-    List<Substituicao> findByCoordenadorId(
-            Integer coordenadorId
-    );
+    List<Substituicao> findByCoordenadorId(Integer coordenadorId);
 
-    // =========================
-    // BUSCAR POR SOLICITAÇÃO
-    // =========================
-    Optional<Substituicao> findBySolicitacaoAusenciaId(
-            Integer solicitacaoAusenciaId
-    );
+    Optional<Substituicao> findBySolicitacaoAusenciaId(Integer solicitacaoAusenciaId);
 
-    // =========================
-    // VERIFICAR EXISTÊNCIA
-    // =========================
-    boolean existsBySolicitacaoAusenciaId(
-            Integer solicitacaoAusenciaId
-    );
+    boolean existsBySolicitacaoAusenciaId(Integer solicitacaoAusenciaId);
+
+    // ← NOVO: necessário para deletar a substituição antes de deletar a solicitação
+    void deleteBySolicitacaoAusenciaId(Integer solicitacaoAusenciaId);
 }
