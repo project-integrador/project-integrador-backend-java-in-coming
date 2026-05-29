@@ -1,7 +1,31 @@
+USE projectintegrador;
 DROP DATABASE projectintegrador;
+
+SELECT * FROM aulas;
+SELECT * FROM coordenadores;
+SELECT * FROM professores;
+SELECT * FROM solicitacoes_ausencia;
+SELECT * FROM substituicoes;
 
 USE projectintegrador;
 
+SET FOREIGN_KEY_CHECKS = 0;
+
+SET SQL_SAFE_UPDATES = 0;
+	
+DELETE FROM substituicoes;
+DELETE FROM solicitacoes_ausencia;
+DELETE FROM aulas;
+DELETE FROM professores;
+DELETE FROM coordenadores;
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+ALTER TABLE substituicoes AUTO_INCREMENT = 1;
+ALTER TABLE solicitacoes_ausencia AUTO_INCREMENT = 1;
+ALTER TABLE aulas AUTO_INCREMENT = 1;
+ALTER TABLE professores AUTO_INCREMENT = 1;
+ALTER TABLE coordenadores AUTO_INCREMENT = 1;
 -- =========================================
 -- INSERTS PROFESSORES
 -- =========================================
