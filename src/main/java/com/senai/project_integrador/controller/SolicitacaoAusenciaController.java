@@ -13,7 +13,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/solicitacao")
 @RequiredArgsConstructor
-@CrossOrigin(origins = {"http://localhost:5173", "http://localhost:3000"})
 public class SolicitacaoAusenciaController {
 
     private final SolicitacaoAusenciaService solicitacaoService;
@@ -43,11 +42,24 @@ public class SolicitacaoAusenciaController {
         return ResponseEntity.ok(solicitacaoService.buscarTodas());
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<SolicitacaoAusencia> atualizarSolicitacao(
+            @PathVariable Integer id,
+            @RequestBody SolicitacaoAusencia solicitacao) {
+        return ResponseEntity.ok(solicitacaoService.atualizarSolicitacao(id, solicitacao));
+    }
+
     @PatchMapping("/{id}/status")
     public ResponseEntity<SolicitacaoAusencia> atualizarStatus(
             @PathVariable Integer id,
             @RequestBody Map<String, String> body) {
         String status = body.get("status");
         return ResponseEntity.ok(solicitacaoService.atualizarStatus(id, status));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletarSolicitacao(@PathVariable Integer id) {
+        solicitacaoService.deletarSolicitacao(id);
+        return ResponseEntity.noContent().build();
     }
 }
